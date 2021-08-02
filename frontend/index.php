@@ -6,13 +6,30 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CRUD B DT jQ PHP I</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="./css/index.css">
 </head>
 
 <body class="body">
+
+  <?php
+  require_once "../backend/base-de-datos/conexion.php";
+  $conexion = new Conexion();
+  $conectar = $conexion->Conectar();
+
+  $consulta = "SELECT usu.id, usu.usuario, usu.celular, usu.ubicacion, rol.descripcion FROM usuario usu INNER JOIN rol rol ON usu.idRol = rol.id";
+
+  $resultado = $conectar->prepare($consulta);
+  $resultado->execute();
+
+  if ($resultado->rowCount() >= 1) {
+    $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
+  } else {
+    $data = null;
+  }
+  $conectar = null;
+  ?>
   <header class="header">
     <h3 class="text-center text-light">
       <span class="badge rounded-pill bg-light text-dark">CRUD</span>
@@ -45,24 +62,33 @@
                   <th>Usuario</th>
                   <th>Celular</th>
                   <th>Ubicación</th>
+                  <th>Rol</th>
                   <th>Acciones</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>
-                    <div class="text-center">
-                      <div class="btn-group">
-                        <button class="btn btn-primary btnEditar">Editar</button>
-                        <button class="btn btn-danger btnEditar">Eliminar</button>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
+                <?php
+                foreach ($data as $d) {
+                  echo '
+                    <tr>
+                      <td>' . $d['id'] . '</td>
+                      <td>' . $d['usuario'] . '</td>
+                      <td>' . $d['celular'] . '</td>
+                      <td>' . $d['ubicacion'] . '</td>
+                      <td>' . $d['descripcion'] . '</td>
+                      <td>
+                        <div class="text-center">
+                          <div class="btn-group">
+                            <button class="btn btn-primary btnEditar">Editar</button>
+                            <button class="btn btn-danger btnEditar">Eliminar</button>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  ';
+                }
+                ?>
+
               </tbody>
             </table>
           </div>
@@ -103,12 +129,9 @@
 
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="./js/index.js"></script>
 </body>
 

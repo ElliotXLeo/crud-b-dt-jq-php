@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.body {
+  color: black;
+}
+
+.header {
+  background: linear-gradient(to right, #0ab4ba, #1164bd);
+  padding: 0.1em;
+}
+
+.contenedor {
+  background: white;
+  margin: auto;
+  padding: 1em;
+  width: 80%;
+  box-shadow: 0.1em 0.1em 0.1em 0.1em black;
+  border-radius: 0.5em;
+}

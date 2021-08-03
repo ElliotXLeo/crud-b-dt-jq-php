@@ -1,5 +1,5 @@
 $(document).ready(() => {
-  $('#tablaPersona').DataTable({
+  var tablaPersona = $('#tablaPersona').DataTable({
     'columnDefs': [{
       'targets': -1,
       'data': null,
@@ -27,7 +27,6 @@ $(document).ready(() => {
     $('.modal-header').addClass('bg-dark bg-gradient');
     $('.modal-title').text('Nuevo usuario');
     $('.modal-title').addClass('text-light');
-
     $('#modalCrud').modal("show");
   });
 
@@ -46,20 +45,20 @@ $(document).ready(() => {
       $.ajax({
         url: '../backend/base-de-datos/crud.php',
         type: 'POST',
-        datatype: 'json',
+        dataType: 'json',
         data: {
           usuario: usuario,
           clave: clave,
           celular: celular
         },
         success: (data) => {
-          if (data != 'null') {
-            const datos = JSON.parse(data);
-            usuario = datos[0].id;
-            usuario = datos[0].usuario;
-            clave = datos[0].celular;
-            celular = datos[0].ubicación;
-            celular = datos[0].descripcion;
+          if (data != null) {
+            const id = data[0].id;
+            const usuario = data[0].usuario;
+            const celular = data[0].celular;
+            const ubicacion = data[0].ubicacion;
+            const descripcion = data[0].descripcion;
+            tablaPersona.row.add([id, usuario, celular, ubicacion, descripcion]).draw();
             Swal.fire({
               icon: 'success',
               title: '¡Agregado!'

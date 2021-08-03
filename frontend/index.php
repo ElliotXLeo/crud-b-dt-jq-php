@@ -47,7 +47,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12 my-4">
-          <button type="button" name="button" class="btn btn-dark col-12 boton-letra" id="botonAgregarUsuario" data-bs-toggle="modal">Agregar usuario</button>
+          <button type="button" name="button" class="btn btn-dark col-12 boton-letra" id="botonAgregarUsuario" data-bs-toggle="modal" data-bs-target="#modalCrud">Agregar usuario</button>
         </div>
       </div>
     </div>
@@ -101,7 +101,6 @@
       </div>
     </div>
 
-    <!-- Modal -->
     <div class="modal fade" id="modalCrud" tabindex="-1" aria-labelledby="modalCrudLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -124,14 +123,13 @@
               <div class="mb-3">
                 <label for="celular" class="form-label">Celular</label>
                 <!-- <input type="number" name="celular" id="celular" class="form-control" placeholder="Celular" required> -->
-                <input type="number" name="celular" id="celular" class="form-control" placeholder="Celular">
+                <input type="text" name="celular" id="celular" class="form-control" placeholder="Celular" pattern="[0-9]{9}" min="900000000" max="999999999" maxlength="9" title="Ingresar un número de 9 dígitos.">
               </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
               <button type="submit" class="btn btn-dark">Registrar</button>
             </div>
-          </form>
         </div>
       </div>
     </div>

@@ -25,10 +25,54 @@ $(document).ready(() => {
   $('#botonAgregarUsuario').click(() => {
     $('#formRegistroUsuario').trigger('reset');
     $('.modal-header').addClass('bg-dark bg-gradient');
-    $('.modal-title').text('Nueva persona');
+    $('.modal-title').text('Nuevo usuario');
     $('.modal-title').addClass('text-light');
+
     $('#modalCrud').modal("show");
   });
 
-
+  $('#formRegistroUsuario').submit((e) => {
+    e.preventDefault();
+    const usuario = $.trim($('#usuario').val());
+    const clave = $.trim($('#clave').val());
+    const celular = $.trim($('#celular').val());
+    if (usuario == "" || clave == "" || celular == "") {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Debe completar los campos del registro.'
+      });
+      return false;
+    } else {
+      $.ajax({
+        url: '../backend/base-de-datos/crud.php',
+        type: 'POST',
+        datatype: 'json',
+        data: {
+          usuario: usuario,
+          clave: clave,
+          celular: celular
+        },
+        success: (data) => {
+          if (data != 'null') {
+            const datos = JSON.parse(data);
+            usuario = datos[0].id;
+            usuario = datos[0].usuario;
+            clave = datos[0].celular;
+            celular = datos[0].ubicación;
+            celular = datos[0].descripcion;
+            Swal.fire({
+              icon: 'success',
+              title: '¡Agregado!'
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error, contactarse con soporte.'
+            });
+          }
+        }
+      });
+      $('#modalCrud').modal("hide");
+    }
+  });
 });

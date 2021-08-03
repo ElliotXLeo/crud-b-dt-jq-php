@@ -107,28 +107,31 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="modalCrudLabel">Modal title</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
-            <form action="" method="post" id="formRegistroUsuario" class="form">
+          <form id="formRegistroUsuario" class="form">
+            <div class="modal-body">
               <div class="mb-3">
                 <label for="usuario" class="form-label">Usuario</label>
-                <input type="text" name="usuario" id="usuario" class="form-control" placeholder="Usuario" required>
+                <!-- <input type="text" name="usuario" id="usuario" class="form-control" placeholder="Usuario" required> -->
+                <input type="text" name="usuario" id="usuario" class="form-control" placeholder="Usuario">
               </div>
               <div class="mb-3">
                 <label for="clave" class="form-label">Clave</label>
-                <input type="password" name="clave" id="clave" class="form-control" placeholder="Clave" required>
+                <!-- <input type="password" name="clave" id="clave" class="form-control" placeholder="Clave" required> -->
+                <input type="password" name="clave" id="clave" class="form-control" placeholder="Clave">
               </div>
               <div class="mb-3">
                 <label for="celular" class="form-label">Celular</label>
-                <input type="number" name="celular" id="celular" class="form-control" placeholder="Celular" required>
+                <!-- <input type="number" name="celular" id="celular" class="form-control" placeholder="Celular" required> -->
+                <input type="number" name="celular" id="celular" class="form-control" placeholder="Celular">
               </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-dark">Registrar</button>
-          </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-dark">Registrar</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

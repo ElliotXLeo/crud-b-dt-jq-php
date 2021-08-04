@@ -89,8 +89,8 @@
                 ?>
                 <!-- <div class="text-center">
                   <div class="btn-group">
-                    <button class="btn btn-primary btnEditar btn-sm boton-letra">Editar</button>
-                    <button class="btn btn-danger btnEditar btn-sm boton-letra">Eliminar</button>
+                    <button class="btn btn-primary boton-editar btn-sm boton-letra">Editar</button>
+                    <button class="btn btn-danger boton-eliminar btn-sm boton-letra">Eliminar</button>
                   </div>
                 </div> -->
 
@@ -104,11 +104,11 @@
     <div class="modal fade" id="modalCrud" tabindex="-1" aria-labelledby="modalCrudLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-header">
+          <div class="modal-header bg-gradient">
             <h5 class="modal-title" id="modalCrudLabel">Modal title</h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <form id="formRegistroUsuario" class="form">
+          <form id="modalFormUsuario" class="form">
             <div class="modal-body">
               <div class="mb-3">
                 <label for="usuario" class="form-label">Usuario</label>
@@ -128,7 +128,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="submit" class="btn btn-dark">Registrar</button>
+              <button type="submit" class="btn btn-dark" id="modalBotonSubmit"></button>
             </div>
         </div>
       </div>

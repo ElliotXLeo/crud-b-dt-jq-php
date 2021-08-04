@@ -123,7 +123,8 @@
               <div class="mb-3">
                 <label for="celular" class="form-label">Celular</label>
                 <!-- <input type="number" name="celular" id="celular" class="form-control" placeholder="Celular" required> -->
-                <input type="text" name="celular" id="celular" class="form-control" placeholder="Celular" pattern="[0-9]{9}" min="900000000" max="999999999" maxlength="9" title="Ingresar un número de 9 dígitos.">
+                <!-- <input type="number" name="celular" id="celular" class="form-control" placeholder="Celular" min="900000000" max="999999999" title="Ingresar un número de 9 dígitos."> -->
+                <input type="text" name="celular" id="celular" class="form-control" placeholder="Celular" pattern="9[0-9]{8}" maxlength="9" title="Ingresar un número válido de 9 dígitos.">
               </div>
             </div>
             <div class="modal-footer">

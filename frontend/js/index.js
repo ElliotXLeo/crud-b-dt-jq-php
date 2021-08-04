@@ -1,5 +1,7 @@
 let opcion = null;
 let tablaPersona = null;
+let fila = null;
+let id = null;
 
 $(document).ready(() => {
   tablaPersona = $('#tablaPersona').DataTable({
@@ -35,6 +37,7 @@ $('#botonAgregarUsuario').click(() => {
   $('.modal-title').addClass('text-light');
   $('#modalBotonSubmit').text('Registrar');
   $('#modalCrud').modal("show");
+  $('#clave').prop("disabled", false);
 });
 
 
@@ -47,35 +50,22 @@ $(document).on('click', '.boton-editar', function () {
   $('.modal-title').addClass('text-light');
   $('#modalBotonSubmit').text('Actualizar');
   $('#modalCrud').modal("show");
-  const fila = $(this).closest('tr');
-  const id = parseInt(fila.find('td:eq(0)').text());
+  fila = $(this).closest('tr');
+  id = parseInt(fila.find('td:eq(0)').text());
   const usuario = fila.find('td:eq(1)').text();
   const celular = fila.find('td:eq(2)').text();
-  const ubicacion = fila.find('td:eq(3)').text();
-  if (false) {
-    Swal.fire({
-      title: '¿Quieres guardar los cambios?',
-      showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: `Guardar`,
-      denyButtonText: `No guardar`,
-      cancelButtonText: `Cancelar`
-    }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
-      if (result.isConfirmed) {
-        Swal.fire('¡Guardado!', '', 'success')
-      } else if (result.isDenied) {
-        Swal.fire('Los cambios no se guardaron', '', 'info')
-      }
-    });
-  }
+  // const ubicacion = fila.find('td:eq(3)').text();
+  $('#usuario').val(usuario);
+  $('#clave').val('********');
+  $('#clave').prop("disabled", true);
+  $('#celular').val(celular);
+
 });
 
 $(document).on('click', '.boton-eliminar', function () {
   opcion = 3;
-  const fila = $(this).closest('tr');
-  const id = parseInt(fila.find('td:eq(0)').text());
-  console.log(id);
+  const fila = $(this);
+  id = parseInt(fila.closest('tr').find('td:eq(0)').text());
   const swalWithBootstrapButtons = Swal.mixin({
     customClass: {
       confirmButton: 'btn btn-success',
@@ -93,34 +83,30 @@ $(document).on('click', '.boton-eliminar', function () {
     reverseButtons: true
   }).then((result) => {
     if (result.isConfirmed) {
-      // $.ajax({
-      //   url: '../backend/base-de-datos/crud.php',
-      //   type: 'POST',
-      //   dataType: 'json',
-      //   data: {
-      //     opcion: opcion,
-      //     id: id
-      //   },
-      //   success: (data) => {
-      //     if (data != null) {
-      //       tablaPersona.row(fila.parents('tr')).remove().draw();
-      //       Swal.fire({
-      //         icon: 'success',
-      //         title: '¡Eliminado!'
-      //       });
-      //     } else {
-      //       Swal.fire({
-      //         icon: 'error',
-      //         title: 'Error, contactarse con soporte.'
-      //       });
-      //     }
-      //   }
-      // });
-      swalWithBootstrapButtons.fire(
-        '¡Eliminad@!',
-        'El usuario ha sido eliminad@.',
-        'success'
-      );
+      $.ajax({
+        url: '../backend/base-de-datos/crud.php',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          opcion: opcion,
+          id: id
+        },
+        success: (data) => {
+          if (data != null) {
+            tablaPersona.row(fila.parents('tr')).remove().draw();
+            swalWithBootstrapButtons.fire(
+              '¡Eliminad@!',
+              'El usuario ha sido eliminad@.',
+              'success'
+            );
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error, contactarse con soporte.'
+            });
+          }
+        }
+      });
     } else if (result.dismiss === Swal.DismissReason.cancel) {
       swalWithBootstrapButtons.fire(
         'Cancelad@',
@@ -142,41 +128,62 @@ $('#modalFormUsuario').submit((e) => {
       title: 'Debe completar los campos del registro.'
     });
     return false;
-  } else {
-    $.ajax({
-      url: '../backend/base-de-datos/crud.php',
-      type: 'POST',
-      dataType: 'json',
-      data: {
-        usuario: usuario,
-        clave: clave,
-        celular: celular,
-        opcion: opcion
-      },
-      success: (data) => {
-        if (data != null) {
-          const id = data[0].id;
-          const usuario = data[0].usuario;
-          const celular = data[0].celular;
-          const ubicacion = data[0].ubicacion;
-          const descripcion = data[0].descripcion;
-          if (opcion == 1) {
-            tablaPersona.row.add([id, usuario, celular, ubicacion, descripcion]).draw();
-          } else if (opcion == 2) {
-            tablaPersona.row(fila).data([id, usuario, celular, ubicacion, descripcion]).draw();
-          }
+  } else if (opcion == 1) {
+    consultaAjax(0, opcion, usuario, clave, celular);
+  } else if (opcion == 2) {
+    Swal.fire({
+      title: '¿Quieres guardar los cambios?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: `Guardar`,
+      denyButtonText: `No guardar`,
+      cancelButtonText: `Cancelar`
+    }).then((result) => {
+      if (result.isConfirmed) {
+        consultaAjax(id, opcion, usuario, clave, celular);
+        Swal.fire('¡Guardado!', '', 'success')
+      } else if (result.isDenied) {
+        Swal.fire('No se guardaron los cambios.', '', 'info')
+      }
+    });
+  }
+  $('#modalCrud').modal("hide");
+});
+
+const consultaAjax = (id, opcion, usuario, clave, celular) => {
+  $.ajax({
+    url: '../backend/base-de-datos/crud.php',
+    type: 'POST',
+    dataType: 'json',
+    data: {
+      id: id,
+      opcion: opcion,
+      usuario: usuario,
+      clave: clave,
+      celular: celular
+    },
+    success: (data) => {
+      if (data != null) {
+        const id = data[0].id;
+        const usuario = data[0].usuario;
+        const celular = data[0].celular;
+        const ubicacion = data[0].ubicacion;
+        const descripcion = data[0].descripcion;
+        if (opcion == 1) {
+          tablaPersona.row.add([id, usuario, celular, ubicacion, descripcion]).draw();
           Swal.fire({
             icon: 'success',
             title: '¡Agregado!'
           });
-        } else {
-          Swal.fire({
-            icon: 'error',
-            title: 'Error, contactarse con soporte.'
-          });
+        } else if (opcion == 2) {
+          tablaPersona.row(fila).data([id, usuario, celular, ubicacion, descripcion]).draw();
         }
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error, contactarse con soporte.'
+        });
       }
-    });
-    $('#modalCrud').modal("hide");
-  }
-});
+    }
+  });
+}

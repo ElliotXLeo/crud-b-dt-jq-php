@@ -8,7 +8,7 @@ $(document).ready(() => {
     'columnDefs': [{
       'targets': -1,
       'data': null,
-      'defaultContent': '<div class="btn-group">      <button class="btn btn-primary boton-editar btn-sm boton-letra">Editar</button>      <button class="btn btn-danger boton-eliminar btn-sm boton-letra">Eliminar</button>    </div>  </div>'
+      'defaultContent': '<div class="btn-group">      <button class="btn btn-success boton-editar btn-sm boton-letra">Editar</button>      <button class="btn btn-danger boton-eliminar btn-sm boton-letra">Eliminar</button>    </div>  </div>'
     }],
     'language': {
       'lengthMenu': 'Visualizar _MENU_ registros',
@@ -31,10 +31,9 @@ $(document).ready(() => {
 $('#botonAgregarUsuario').click(() => {
   opcion = 1;
   $('#modalFormUsuario').trigger('reset');
-  $('.modal-header').removeClass('bg-primary');
-  $('.modal-header').addClass('bg-dark');
+  $('.modal-header').removeClass('bg-success');
+  $('.modal-header').addClass('bg-primary');
   $('.modal-title').text('Nuevo usuario');
-  $('.modal-title').addClass('text-light');
   $('#modalBotonSubmit').text('Registrar');
   $('#modalCrud').modal("show");
   $('#clave').prop("disabled", false);
@@ -44,17 +43,15 @@ $('#botonAgregarUsuario').click(() => {
 $(document).on('click', '.boton-editar', function () {
   opcion = 2;
   $('#modalFormUsuario').trigger('reset');
-  $('.modal-header').removeClass('bg-dark');
-  $('.modal-header').addClass('bg-primary');
+  $('.modal-header').removeClass('bg-primary');
+  $('.modal-header').addClass('bg-success');
   $('.modal-title').text('Editar usuario');
-  $('.modal-title').addClass('text-light');
   $('#modalBotonSubmit').text('Actualizar');
   $('#modalCrud').modal("show");
   fila = $(this).closest('tr');
   id = parseInt(fila.find('td:eq(0)').text());
   const usuario = fila.find('td:eq(1)').text();
   const celular = fila.find('td:eq(2)').text();
-  // const ubicacion = fila.find('td:eq(3)').text();
   $('#usuario').val(usuario);
   $('#clave').val('********');
   $('#clave').prop("disabled", true);
@@ -84,7 +81,7 @@ $(document).on('click', '.boton-eliminar', function () {
   }).then((result) => {
     if (result.isConfirmed) {
       $.ajax({
-        url: '../backend/base-de-datos/crud.php',
+        url: '../backend/models/crud.php',
         type: 'POST',
         dataType: 'json',
         data: {
@@ -152,7 +149,7 @@ $('#modalFormUsuario').submit((e) => {
 
 const consultaAjax = (id, opcion, usuario, clave, celular) => {
   $.ajax({
-    url: '../backend/base-de-datos/crud.php',
+    url: '../backend/models/crud.php',
     type: 'POST',
     dataType: 'json',
     data: {

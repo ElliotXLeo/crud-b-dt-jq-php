@@ -6,20 +6,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CRUD B DT jQ PHP I</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <link rel="stylesheet" href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
   <link rel="stylesheet" href="./css/index.css">
 </head>
 
 <body class="body">
 
   <?php
-  require_once "../backend/base-de-datos/conexion.php";
+  // Read
+  require_once "../backend/models/conexion.php";
   $conexion = new Conexion();
   $conectar = $conexion->Conectar();
 
   $consulta = "SELECT usu.id, usu.usuario, usu.celular, usu.ubicacion, rol.descripcion FROM usuario usu INNER JOIN rol rol ON usu.idRol = rol.id;";
-  // $consulta = "SELECT usu.id, usu.usuario, usu.celular, usu.ubicacion, rol.descripcion FROM usuario usu INNER JOIN rol rol ON usu.idRol = rol.id WHERE usu.id=4;";
 
   $resultado = $conectar->prepare($consulta);
   $resultado->execute();
@@ -31,8 +31,9 @@
   }
   $conectar = null;
   ?>
+
   <header class="header">
-    <h3 class="text-center text-light">
+    <h3 class="text-center text-light py-2">
       <span class="badge rounded-pill bg-light text-dark">CRUD</span>
       <span class="badge rounded-pill bg-danger">B</span>
       <span class="badge rounded-pill bg-primary">DataTables</span>
@@ -47,17 +48,13 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12 my-4">
-          <button type="button" name="button" class="btn btn-dark col-12 boton-letra" id="botonAgregarUsuario" data-bs-toggle="modal" data-bs-target="#modalCrud">Agregar usuario</button>
+          <button type="button" name="button" class="btn btn-primary col-12 fw-bold" id="botonAgregarUsuario" data-bs-toggle="modal" data-bs-target="#modalCrud">Agregar usuario</button>
         </div>
       </div>
-    </div>
-
-
-    <div class="container">
       <div class="row">
         <div class="col-lg-12">
           <div class="table-responsive">
-            <table class="table table-striped table-dark table-hover" id="tablaPersona">
+            <table class="table table-striped table-hover" id="tablaPersona">
               <thead class="text-center">
                 <tr>
                   <th>Id</th>
@@ -87,12 +84,6 @@
                   }
                 }
                 ?>
-                <!-- <div class="text-center">
-                  <div class="btn-group">
-                    <button class="btn btn-primary boton-editar btn-sm boton-letra">Editar</button>
-                    <button class="btn btn-danger boton-eliminar btn-sm boton-letra">Eliminar</button>
-                  </div>
-                </div> -->
 
               </tbody>
             </table>
@@ -104,7 +95,7 @@
     <div class="modal fade" id="modalCrud" tabindex="-1" aria-labelledby="modalCrudLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-header bg-gradient">
+          <div class="modal-header bg-primary bg-gradient text-light">
             <h5 class="modal-title" id="modalCrudLabel">Modal title</h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
@@ -128,8 +119,8 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="submit" class="btn btn-dark" id="modalBotonSubmit"></button>
+              <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-primary" id="modalBotonSubmit"></button>
             </div>
         </div>
       </div>
@@ -137,9 +128,10 @@
 
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="./js/index.js"></script>
 </body>

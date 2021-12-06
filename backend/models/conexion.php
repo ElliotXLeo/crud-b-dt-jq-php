@@ -5,7 +5,7 @@ class Conexion
   public static function Conectar()
   {
     define("SERVIDOR", "localhost");
-    define("NOMBRE_BD", "crud-b-dt-jq-php");
+    define("NOMBRE_BD", "develop");
     define("USUARIO", "root");
     define("CLAVE", "");
     $opciones = [PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"];

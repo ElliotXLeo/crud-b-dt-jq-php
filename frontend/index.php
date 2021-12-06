@@ -20,7 +20,7 @@
   $conexion = new Conexion();
   $conectar = $conexion->Conectar();
 
-  $consulta = "SELECT usu.id, usu.usuario, usu.celular, usu.ubicacion, rol.descripcion FROM usuario usu INNER JOIN rol rol ON usu.idRol = rol.id;";
+  $consulta = "SELECT usu.id, usu.usuario, rol.descripcion FROM usuarios usu INNER JOIN roles rol ON usu.id_rol = rol.id;";
 
   $resultado = $conectar->prepare($consulta);
   $resultado->execute();
@@ -60,8 +60,6 @@
                 <tr>
                   <th>Id</th>
                   <th>Usuario</th>
-                  <th>Celular</th>
-                  <th>Ubicación</th>
                   <th>Rol</th>
                   <th>Acciones</th>
                 </tr>
@@ -74,8 +72,6 @@
                       <tr>
                         <td>' . $d['id'] . '</td>
                         <td>' . $d['usuario'] . '</td>
-                        <td>' . $d['celular'] . '</td>
-                        <td>' . $d['ubicacion'] . '</td>
                         <td>' . $d['descripcion'] . '</td>
                         <td>
                           
@@ -111,12 +107,6 @@
                 <label for="clave" class="form-label">Clave</label>
                 <!-- <input type="password" name="clave" id="clave" class="form-control" placeholder="Clave" required> -->
                 <input type="password" name="clave" id="clave" class="form-control" placeholder="Clave">
-              </div>
-              <div class="mb-3">
-                <label for="celular" class="form-label">Celular</label>
-                <!-- <input type="number" name="celular" id="celular" class="form-control" placeholder="Celular" required> -->
-                <!-- <input type="number" name="celular" id="celular" class="form-control" placeholder="Celular" min="900000000" max="999999999" title="Ingresar un número de 9 dígitos."> -->
-                <input type="text" name="celular" id="celular" class="form-control" placeholder="Celular" pattern="9[0-9]{8}" maxlength="9" title="Ingresar un número válido de 9 dígitos.">
               </div>
             </div>
             <div class="modal-footer">

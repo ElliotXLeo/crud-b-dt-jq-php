@@ -51,12 +51,9 @@ $(document).on('click', '.boton-editar', function () {
   fila = $(this).closest('tr');
   id = parseInt(fila.find('td:eq(0)').text());
   const usuario = fila.find('td:eq(1)').text();
-  const celular = fila.find('td:eq(2)').text();
   $('#usuario').val(usuario);
   $('#clave').val('********');
   $('#clave').prop("disabled", true);
-  $('#celular').val(celular);
-
 });
 
 $(document).on('click', '.boton-eliminar', function () {
@@ -118,15 +115,14 @@ $('#modalFormUsuario').submit((e) => {
   e.preventDefault();
   const usuario = $.trim($('#usuario').val());
   const clave = $.trim($('#clave').val());
-  const celular = $.trim($('#celular').val());
-  if (usuario == "" || clave == "" || celular == "") {
+  if (usuario == "" || clave == "") {
     Swal.fire({
       icon: 'warning',
       title: 'Debe completar los campos del registro.'
     });
     return false;
   } else if (opcion == 1) {
-    consultaAjax(0, opcion, usuario, clave, celular);
+    consultaAjax(0, opcion, usuario, clave);
   } else if (opcion == 2) {
     Swal.fire({
       title: '¿Quieres guardar los cambios?',
@@ -137,7 +133,7 @@ $('#modalFormUsuario').submit((e) => {
       cancelButtonText: `Cancelar`
     }).then((result) => {
       if (result.isConfirmed) {
-        consultaAjax(id, opcion, usuario, clave, celular);
+        consultaAjax(id, opcion, usuario, clave);
         Swal.fire('¡Guardado!', '', 'success')
       } else if (result.isDenied) {
         Swal.fire('No se guardaron los cambios.', '', 'info')
@@ -147,7 +143,7 @@ $('#modalFormUsuario').submit((e) => {
   $('#modalCrud').modal("hide");
 });
 
-const consultaAjax = (id, opcion, usuario, clave, celular) => {
+const consultaAjax = (id, opcion, usuario, clave) => {
   $.ajax({
     url: '../backend/models/crud.php',
     type: 'POST',
@@ -156,24 +152,21 @@ const consultaAjax = (id, opcion, usuario, clave, celular) => {
       id: id,
       opcion: opcion,
       usuario: usuario,
-      clave: clave,
-      celular: celular
+      clave: clave
     },
     success: (data) => {
       if (data != null) {
         const id = data[0].id;
         const usuario = data[0].usuario;
-        const celular = data[0].celular;
-        const ubicacion = data[0].ubicacion;
         const descripcion = data[0].descripcion;
         if (opcion == 1) {
-          tablaPersona.row.add([id, usuario, celular, ubicacion, descripcion]).draw();
+          tablaPersona.row.add([id, usuario, descripcion]).draw();
           Swal.fire({
             icon: 'success',
             title: '¡Agregado!'
           });
         } else if (opcion == 2) {
-          tablaPersona.row(fila).data([id, usuario, celular, ubicacion, descripcion]).draw();
+          tablaPersona.row(fila).data([id, usuario, descripcion]).draw();
         }
       } else {
         Swal.fire({

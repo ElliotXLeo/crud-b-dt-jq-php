@@ -1,6 +1,6 @@
-# [CRUD B DT jQ PHP](https://elliotxleo.github.io/crud-b-dt-jq-php/) | [<img src="https://image.flaticon.com/icons/png/512/174/174857.png" height="20"/>](https://www.linkedin.com/in/elliotgaramendi/) | [<img src="https://image.flaticon.com/icons/png/512/733/733553.png" height="20"/>](https://github.com/ElliotXLeo) | [<img src="https://image.flaticon.com/icons/png/512/145/145802.png" height="20"/>](https://www.facebook.com/elliotgaramendi) | [<img src="https://image.flaticon.com/icons/png/512/1384/1384055.png" height="20"/>](https://api.whatsapp.com/send?phone=51997045329) | [<img src="https://image.flaticon.com/icons/png/512/975/975645.png" height="20"/>](https://nextjs-react-portafolio-fc.vercel.app) | [<img src="https://image.flaticon.com/icons/png/512/5439/5439199.png" height="20"/>](mailto:elliotgaramendi@gmail.com) | 
+# [CRUD B DT jQ PHP](https://elliotgaramendi.000webhostapp.com/app/crud-b-dt-jq-php/frontend/index.php) | [<img src="https://image.flaticon.com/icons/png/512/174/174857.png" height="20"/>](https://www.linkedin.com/in/elliotgaramendi/) | [<img src="https://image.flaticon.com/icons/png/512/733/733553.png" height="20"/>](https://github.com/ElliotXLeo) | [<img src="https://image.flaticon.com/icons/png/512/145/145802.png" height="20"/>](https://www.facebook.com/elliotgaramendi) | [<img src="https://image.flaticon.com/icons/png/512/1384/1384055.png" height="20"/>](https://api.whatsapp.com/send?phone=51997045329) | [<img src="https://image.flaticon.com/icons/png/512/975/975645.png" height="20"/>](https://nextjs-react-portafolio-fc.vercel.app) | [<img src="https://image.flaticon.com/icons/png/512/5439/5439199.png" height="20"/>](mailto:elliotgaramendi@gmail.com) | 
 
-[![crud-b-dt-jq-php](https://i.postimg.cc/bvwhwVfL/crud-b-dt-jq-php.png)](https://elliotxleo.github.io/crud-b-dt-jq-php)
+[![crud-b-dt-jq-php](https://i.postimg.cc/6pB5BZJB/crud-b-dt-jq-php.png)](https://elliotgaramendi.000webhostapp.com/app/crud-b-dt-jq-php/frontend/index.php)
 
 ## Resumen
 Aplicación Web donde puedes administra usuarios mediante un CRUD. La aplicación emplea MySQL como motor de base de datos, PHP de lado del Backend y jQuery y PHP de lado del Frontend.
@@ -19,9 +19,9 @@ Aplicación Web donde puedes administra usuarios mediante un CRUD. La aplicació
 
 - Base de datos
   - Ir a su cliente de Base de Datos
-  - Crear la tabla crud-b-dt-jq-php
+  - Crear la tabla develop
   - Usar la base de datos creada
-  - Importar el script crud-b-dt-jq-php.sql
+  - Importar el script develop.sql
     - ./base-de-datos
 
 - Aplicación
@@ -32,9 +32,9 @@ Aplicación Web donde puedes administra usuarios mediante un CRUD. La aplicació
   - Si tiene credenciales diferentes en su motor de base de datos, deberá configurar el script ubicado en /backend/models/conexion.php con su editor favorito.
 
 ## Tecnologías
-| MYSQL | PHP | CSS | JavaScript | Bootstrap | jQuery | SweetAler2 | DataTables |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| <img src="https://d1.awsstatic.com/asset-repository/products/amazon-rds/1024px-MySQL.ff87215b43fd7292af172e2a5d9b844217262571.png" width="1000"/> | <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg" width="1000"/> | <img src="https://i.postimg.cc/mgSDG9F2/css.png" width="1000"/> | <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1200px-Unofficial_JavaScript_logo_2.svg.png" width="1000"/> | <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/1200px-Bootstrap_logo.svg.png" width="1000px"/> | <img src="https://www.solucionex.com/sites/default/files/posts/imagen/jquery.png" width="1000px"/> | <img src="https://sweetalert2.github.io/images/SweetAlert2.png" width="1000px"/> | <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Datatables_logo_square.png" width="1000px"/> |
+| MYSQL | PHP | HTML | CSS | JavaScript | Bootstrap | jQuery | SweetAler2 | DataTables |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| <img src="https://d1.awsstatic.com/asset-repository/products/amazon-rds/1024px-MySQL.ff87215b43fd7292af172e2a5d9b844217262571.png" width="1000"/> | <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg" width="1000"/> | <img src="https://i.postimg.cc/rF6WrLjr/html.png" width="1000"/> | <img src="https://i.postimg.cc/mgSDG9F2/css.png" width="1000"/> | <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1200px-Unofficial_JavaScript_logo_2.svg.png" width="1000"/> | <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/1200px-Bootstrap_logo.svg.png" width="1000px"/> | <img src="https://www.solucionex.com/sites/default/files/posts/imagen/jquery.png" width="1000px"/> | <img src="https://sweetalert2.github.io/images/SweetAlert2.png" width="1000px"/> | <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Datatables_logo_square.png" width="1000px"/> |
 
 
 ## Redes sociales
